@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+	<p:growl id="messages" showDetail="true" autoUpdate="true" />
+	<p:panel style="width:600px;margin:0 auto 0;"
+		header="Formulário de inscrição">
+		<h:button value="Painel de administração" outcome="painel" />
+		<h:form id="frm-cadastro" enctype="multipart/form-data"
+			styleClass="frm-cadastro">
+			<p:panelGrid id="frm-cadastro-grid" columns="2"
+				styleClass="form-cadastro-grid" columnClasses="label, campo">
+				<p:outputLabel value="Nome: " for="nome" />
+				<p:inputText id="nome" value="#{participanteBean.participante.nome}"
+					required="true" requiredMessage="Faltan dados" />
+
+				<p:outputLabel value="CPF: " for="cpf" />
+				<p:inputMask id="cpf" value="#{participanteBean.participante.cpf}"
+					mask="999.999.999-99" required="true" />
+
+				<p:outputLabel value="RG: " for="rg" />
+				<p:inputMask id="rg" value="#{participanteBean.participante.rg}"
+					mask="9?99999999" required="true" />
+
+				<p:outputLabel value="Data de nascimento: " for="dataNascimento" />
+				<p:calendar id="dataNascimento"
+					value="#{participanteBean.participante.dataNascimento}"
+					pattern="dd-MM-yyyy" mask="true" />
+
+				<p:outputLabel value="Endereço: " for="endereco" />
+				<p:inputText id="endereco"
+					value="#{participanteBean.participante.endereco}" />
+
+				<p:outputLabel value="Telefone: " for="telefone" />
+				<p:inputMask id="telefone"
+					value="#{participanteBean.participante.telefone}"
+					mask="(999)9999-9999" />
+
+				<p:outputLabel value="E-mail: " for="email" />
+				<p:inputText id="email"
+					value="#{participanteBean.participante.email}" required="true"
+					validatorMessage="E-mail inválido">
+					<f:validateRegex
+						pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+				</p:inputText>
+
+				<p:outputLabel value="Instituição de ensino superior: "
+					for="instituicao" />
+				<p:inputText id="instituicao"
+					value="#{participanteBean.participante.instituicaoEnsinoSuperior}" />
+
+				<p:outputLabel value="Curso: " for="curso" />
+				<p:inputText id="curso"
+					value="#{participanteBean.participante.curso}" required="true" />
+
+				<p:outputLabel value="Período: " for="periodo" />
+				<p:inputText id="periodo"
+					value="#{participanteBean.participante.periodo}" />
+
+				<p:outputLabel value="Vagas: " for="vagas" />
+				<p:selectOneMenu id="vagas"
+					value="#{participanteBean.participante.vagaSolicitada}"
+					required="true">
+					<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+					<f:selectItems value="#{participanteBean.vagasValues}" var="vaga"
+						itemValue="#{vaga}" itemLabel="#{vaga.descricao}" />
+				</p:selectOneMenu>
+				<p:outputLabel value="Histórico escolar: " for="anexo" />
+				<p:fileUpload id="anexo" value="#{participanteBean.fileUploaded}"
+					mode="simple" required="true" />
+			</p:panelGrid>
+			<p:commandButton value="Realizar inscrição"
+				update="frm-cadastro-grid, cadFinalizado"
+				action="#{participanteBean.cadastrarParticipante}" ajax="false">
+			</p:commandButton>
+
+		</h:form>
+	</p:panel>
+	<p:dialog modal="true" widgetVar="cadFinalizado"
+		header="Cadastro completado" draggable="false" closable="false"
+		resizable="false" visible="#{participanteBean.cadastroFinalizado}">
+		<h1>Cadastro realizado com sucesso !</h1>
+		<h2>Obrigado por ter utilizado nosso sistema.</h2>
+		<h:button value="Painel de administração" outcome="painel" />
+		<h:outputLink value="http://cecane-ufg.blogspot.com.br/">Sair</h:outputLink>
+	</p:dialog>
+</h:body>
+</html>

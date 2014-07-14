@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="teste" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7926cc05-3b1d-446f-b6fc-862fbcd2405d">
+	<property name="ireport.zoom" value="3.138428376721005"/>
+	<property name="ireport.x" value="1384"/>
+	<property name="ireport.y" value="210"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#9ACD32">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#EAFFBF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="New Dataset 1" uuid="cf7c8baa-818e-44de-8c05-c7ac998d6cb1">
+		<queryString language="SQL">
+			<![CDATA[SELECT
+     participante."nome" AS participante_nome,
+     participante."data_nascimento" AS participante_data_nascimento,
+     participante."cpf" AS participante_cpf,
+     participante."telefone" AS participante_telefone,
+     participante."email" AS participante_email,
+     participante."data_inscricao" AS participante_data_inscricao
+FROM
+     "public"."participante" participante]]>
+		</queryString>
+		<field name="participante_nome" class="java.lang.String"/>
+		<field name="participante_data_nascimento" class="java.sql.Date"/>
+		<field name="participante_cpf" class="java.lang.String"/>
+		<field name="participante_telefone" class="java.lang.String"/>
+		<field name="participante_email" class="java.lang.String"/>
+		<field name="participante_data_inscricao" class="java.sql.Timestamp"/>
+	</subDataset>
+	<field name="nome" class="java.lang.String"/>
+	<field name="dataNascimento" class="java.util.Date"/>
+	<field name="cpf" class="java.lang.String"/>
+	<field name="telefone" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="vagaSolicitada.descricao" class="java.lang.Object"/>
+	<background>
+		<band height="555" splitType="Stretch">
+			<image>
+				<reportElement x="183" y="16" width="437" height="522" uuid="210b3eba-2338-4892-ac20-c0543359c47d"/>
+				<imageExpression><![CDATA["C:\\logo CECANE.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="227" y="0" width="423" height="47" uuid="2bb9c6b2-a9ea-41d6-8a00-14dee2e4c57b"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Equipe CECANE UFG 2014
+Lista de inscritos na seleção de estudantes]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="168" y="0" width="107" height="20" uuid="d8155da1-5e13-4f13-a6ae-b1ee97810ea2"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data de nascimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="0" width="100" height="20" uuid="f6a99564-d366-4cb6-9fc9-1bb2a8304fe4"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="168" height="20" uuid="5e5951c2-1829-4907-83a3-278c0663518c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="375" y="0" width="100" height="20" uuid="3d88ab64-0a2c-42d1-8926-d4a3dbd97670"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="475" y="0" width="163" height="20" uuid="aaef5b2e-68a5-41b0-bc3e-e6f63470f497"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[E-mail]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="638" y="0" width="164" height="20" uuid="1ee66a63-9cc8-4e70-b810-70b85b2590b3"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vaga solicitada]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="168" y="3" width="107" height="20" uuid="f59fd511-e917-42fd-bfca-a00e9bf5b62f"/>
+				<textFieldExpression><![CDATA[$F{dataNascimento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="275" y="3" width="100" height="20" uuid="4e096267-7381-4b8c-aa4c-9cd567de5995"/>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="3" width="168" height="20" uuid="b2128c0b-2180-4989-8ef6-81ab376341b8"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="375" y="3" width="100" height="20" uuid="4f3ff5fc-86d8-42da-91b7-9e7ce6e78ed0"/>
+				<textFieldExpression><![CDATA[$F{telefone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="475" y="3" width="163" height="20" uuid="9889aba9-a102-4a11-bb4d-ec38694dfe04"/>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="638" y="3" width="164" height="20" uuid="605085f4-151a-4e2c-a5fb-18af2fce052b"/>
+				<textFieldExpression><![CDATA[$F{vagaSolicitada.descricao}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="-3" width="802" height="3" uuid="618f6af5-5ac4-49e3-86c5-ef1746d9e4c5"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+	<p:dialog header="Modal Dialog" widgetVar="dialog" modal="true"
+		height="100" visible="true" rendered="#{!participanteBean.formAdmin}">
+		<h:form rendered="#{!participanteBean.formAdmin}">
+			<p:outputLabel value="Senha do administrador: " />
+			<p:password value="#{participanteBean.formAdminSenha}" />
+			<p:commandButton value="Entrar"
+				action="#{participanteBean.validarSenhaAdmin}" ajax="false"
+				update=":frm-admin"
+				onclick="PrimeFaces.monitorDownload(start, stop);" />
+		</h:form>
+	</p:dialog>
+
+	<h:form id="frm-admin" rendered="#{participanteBean.formAdmin}">
+		<p:commandButton value="Gerar relatório"
+			actionListener="#{participanteBean.gerarRelatorio}" ajax="false" /><p:separator/>
+		<p:dataTable var="participante"
+			value="#{participanteBean.listarParticipantes}">
+			<f:facet name="header">Participantes cadastrados</f:facet>
+			<p:column headerText="Nome">
+				<p:outputLabel value="#{participante.nome}" />
+			</p:column>
+			<p:column headerText="E-mail">
+				<p:outputLabel value="#{participante.email}" />
+			</p:column>
+			<p:column headerText="Telefone">
+				<p:outputLabel value="#{participante.telefone}" />
+			</p:column>
+			<p:column headerText="Curso">
+				<p:outputLabel value="#{participante.curso}" />
+			</p:column>
+			<p:column headerText="Vaga">
+				<p:outputLabel value="#{participante.vagaSolicitada.descricao}" />
+			</p:column>
+			<p:column headerText="Data da inscrição">
+				<p:outputLabel value="#{participante.dataInscricao}" />
+			</p:column>
+			<p:column headerText="Download">
+				<p:commandButton value="Download" ajax="false"
+					onclick="PrimeFaces.monitorDownload(start, stop);"
+					icon="ui-icon-arrowthick-1-s">
+					<f:setPropertyActionListener value="#{participante}"
+						target="#{participanteBean.participante}" />
+					<p:fileDownload value="#{participanteBean.fileDownload}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+
+	<p:dialog modal="true" widgetVar="statusDialog"
+		header="Procesando os dados..." draggable="false" closable="false"
+		resizable="false">
+		<p:graphicImage value="/images/red loader.gif" />
+	</p:dialog>
+
+	<script type="text/javascript">
+		function start() {
+			PF('statusDialog').show();
+		}
+
+		function stop() {
+			PF('statusDialog').hide();
+		}
+	</script>
+
+	<p:dialog header="Detalhes do participante" widgetVar="detalhes"
+		modal="true">
+		<h:form>
+			<p:outputLabel value="#{participanteBean.participante.nome}" />
+		</h:form>
+	</p:dialog>
+
+</h:body>
+</html>
