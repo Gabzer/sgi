@@ -8,8 +8,8 @@
 		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/sgi</property>
-		<property name="hibernate.connection.username">postgres</property>
-		<property name="hibernate.connection.password">postgres</property>
+		<property name="hibernate.connection.username">user</property>
+		<property name="hibernate.connection.password">password</property>
 		
 		<!-- Configuração do current session para hibernate 4x -->
 		<property name="hibernate.current_session_context_class">thread</property>
